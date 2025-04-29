@@ -72,7 +72,7 @@
       background-color: #ddd;
       color: #555;
       position: absolute; /* Agora o botão "Não" vai se mover livremente dentro do contêiner */
-      top: 20%; /* Posição ajustada */
+      top: 20%; /* Posição inicial ajustada */
     }
 
     #noBtn:hover {
@@ -125,20 +125,44 @@
     const heartLoader = document.getElementById("heartLoader");
     const resultContainer = document.getElementById("resultContainer");
 
-    // Função para mover o botão "Não" para uma nova posição aleatória dentro do contêiner
+    // Função para mover o botão "Não" para qualquer posição visível na tela
     function moveNoButton() {
-      const margin = 20;
+      const margin = 20; // margem para não deixar o botão muito na borda
       const maxX = questionContainer.offsetWidth - noBtn.offsetWidth - margin; // limite X
       const maxY = questionContainer.offsetHeight - noBtn.offsetHeight - margin; // limite Y
 
-      const newX = Math.floor(Math.random() * maxX); // Posição aleatória X
-      const newY = Math.floor(Math.random() * maxY); // Posição aleatória Y
+      // Gerar posições aleatórias para o botão "Não" nos 4 cantos ou em qualquer lugar dentro da tela
+      const randomPos = Math.floor(Math.random() * 4); // Escolher entre 4 posições
+
+      let newX, newY;
+
+      switch (randomPos) {
+        case 0: // Canto superior esquerdo
+          newX = 0;
+          newY = 0;
+          break;
+        case 1: // Canto superior direito
+          newX = maxX;
+          newY = 0;
+          break;
+        case 2: // Canto inferior esquerdo
+          newX = 0;
+          newY = maxY;
+          break;
+        case 3: // Canto inferior direito
+          newX = maxX;
+          newY = maxY;
+          break;
+        default: // Caso padrão, posição aleatória dentro da tela
+          newX = Math.floor(Math.random() * maxX);
+          newY = Math.floor(Math.random() * maxY);
+      }
 
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
 
-    // Evento de clique para fazer o botão "Não" desaparecer e teleportar para outra posição
+    // Evento de clique para fazer o botão "Não" teleportar para outra posição aleatória
     noBtn.addEventListener("click", () => {
       moveNoButton(); // Teleporta o botão "Não" para uma nova posição
     });
