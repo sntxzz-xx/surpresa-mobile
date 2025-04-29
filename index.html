@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Convite Especial 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #ffe0ec, #fff5f9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden; /* Impede o scroll */
+    }
+
+    h1 {
+      font-size: 8vw; /* Tamanho responsivo para a largura da tela */
+      color: #d6336c;
+      margin-bottom: 5vh;
+    }
+
+    #questionContainer {
+      position: relative;
+      width: 70vw; /* Ajusta a largura para dispositivos verticais */
+      height: 45vh; /* Altura adaptada para a vertical */
+      min-width: 250px; /* Tamanho mínimo para a largura */
+      min-height: 350px; /* Tamanho mínimo para a altura */
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5vh 0;
+      flex-direction: column;
+      gap: 3vh; /* Maior espaçamento entre os botões */
+      overflow: hidden;
+    }
+
+    button {
+      padding: 5vw 8vw; /* Tamanho responsivo ajustado para botões */
+      font-size: 5vw; /* Fonte responsiva */
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 60%; /* Largura ajustada para maior adaptação */
+    }
+
+    #yesBtn {
+      background-color: #ff5d8f;
+      color: white;
+      position: relative;
+    }
+
+    #yesBtn:hover {
+      background-color: #e14c7d;
+    }
+
+    #noBtn {
+      background-color: #ddd;
+      color: #555;
+      position: absolute; /* Movimento livre dentro do contêiner */
+      top: 20%; /* Posição ajustada para telas verticais */
+    }
+
+    #noBtn:hover {
+      background-color: #ccc;
+    }
+
+    #heartLoader {
+      font-size: 8vw;
+      margin-top: 5vh;
+      animation: pulse 1s infinite;
+      display: none;
+      color: #ff4d7e;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    #resultContainer {
+      display: none;
+      margin-top: 5vh;
+    }
+
+    #resultContainer p {
+      font-size: 6vw;
+      color: #d6336c;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quer namorar comigo?</h1>
+
+  <div id="questionContainer">
+    <button id="yesBtn">Sim 💖</button>
+    <button id="noBtn">Não 😢</button>
+  </div>
+
+  <div id="heartLoader">💗</div>
+
+  <div id="resultContainer">
+    <p>Você fez a escolha certa 😍</p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const heartLoader = document.getElementById("heartLoader");
+    const resultContainer = document.getElementById("resultContainer");
+
+    // Função para mover o botão "Não" para uma nova posição aleatória dentro do contêiner
+    function moveNoButton() {
+      const margin = 20;
+      const maxX = questionContainer.offsetWidth - noBtn.offsetWidth - margin; // limite X
+      const maxY = questionContainer.offsetHeight - noBtn.offsetHeight - margin; // limite Y
+
+      const newX = Math.floor(Math.random() * maxX); // Posição aleatória X
+      const newY = Math.floor(Math.random() * maxY); // Posição aleatória Y
+
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
+    }
+
+    // Evento de clique para mover o botão "Não" para uma nova posição
+    noBtn.addEventListener("click", () => {
+      moveNoButton(); // Move o botão "Não" para uma nova posição
+    });
+
+    yesBtn.addEventListener("click", () => {
+      heartLoader.style.display = "block";
+
+      setTimeout(() => {
+        heartLoader.style.display = "none";
+        resultContainer.style.display = "block";
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
