@@ -32,30 +32,30 @@
 
     #questionContainer {
       position: relative;
-      width: 70vw; /* Ajusta a largura para dispositivos verticais */
-      height: 45vh; /* Altura adaptada para a vertical */
+      width: 60vw; /* Largura menor */
+      height: 40vh; /* Altura menor */
       min-width: 250px; /* Tamanho mínimo para a largura */
-      min-height: 350px; /* Tamanho mínimo para a altura */
+      min-height: 300px; /* Tamanho mínimo para a altura */
       background-color: #fff;
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 5vh 0;
+      padding: 3vh 0;
       flex-direction: column;
-      gap: 3vh; /* Maior espaçamento entre os botões */
+      gap: 3vh; /* Espaçamento maior entre os botões */
       overflow: hidden;
     }
 
     button {
-      padding: 5vw 8vw; /* Tamanho responsivo ajustado para botões */
-      font-size: 5vw; /* Fonte responsiva */
+      padding: 4vw 6vw; /* Tamanho reduzido dos botões */
+      font-size: 4vw; /* Fonte reduzida */
       border: none;
       border-radius: 30px;
       cursor: pointer;
       transition: 0.3s;
-      width: 60%; /* Largura ajustada para maior adaptação */
+      width: 55%; /* Largura ajustada */
     }
 
     #yesBtn {
@@ -71,8 +71,8 @@
     #noBtn {
       background-color: #ddd;
       color: #555;
-      position: absolute; /* Movimento livre dentro do contêiner */
-      top: 20%; /* Posição ajustada para telas verticais */
+      position: absolute; /* Agora o botão "Não" vai se mover livremente dentro do contêiner */
+      top: 20%; /* Posição ajustada */
     }
 
     #noBtn:hover {
@@ -138,9 +138,9 @@
       noBtn.style.top = `${newY}px`;
     }
 
-    // Evento de clique para mover o botão "Não" para uma nova posição
+    // Evento de clique para fazer o botão "Não" desaparecer e teleportar para outra posição
     noBtn.addEventListener("click", () => {
-      moveNoButton(); // Move o botão "Não" para uma nova posição
+      moveNoButton(); // Teleporta o botão "Não" para uma nova posição
     });
 
     yesBtn.addEventListener("click", () => {
